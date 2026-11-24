@@ -6,7 +6,6 @@ def order_children(
     children: list[tuple[int, int]],
     visited: set[tuple[int, int]],
     n: int ) -> list[tuple[int, int]]:
-    # Fewer onward moves = higher priority (better for large n)
     scored = []
     for child in children:
         next_visited = visited | {child}
