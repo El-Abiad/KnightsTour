@@ -6,6 +6,12 @@ KNIGHT_MOVES = [
 def in_bounds(r: int, c: int, n: int) -> bool:
     return 0 <= r < n and 0 <= c < n
 
+def is_neighbor(pos: tuple[int, int], target: tuple[int, int]) -> bool:
+    dx = abs(pos[0] - target[0])
+    dy = abs(pos[1] - target[1])
+
+    return (dx, dy) in {(1, 2), (2, 1)}
+
 
 def get_valid_neighbors(pos: tuple[int, int], visited: set[tuple[int, int]], n: int) -> list[tuple[int, int]]:
     r, c = pos

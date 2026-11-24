@@ -1,5 +1,5 @@
-from algorithms.imports import KNIGHT_MOVES
-from algorithms.imports import in_bounds, get_valid_neighbors
+from imports import KNIGHT_MOVES
+from imports import in_bounds, get_valid_neighbors
 
 
 def order_children(
@@ -15,7 +15,7 @@ def order_children(
     return [child for _, child in scored]
 
 
-def knights_tour(n: int, start: tuple[int, int] = (0, 0)) -> list[tuple[int, int]] | None:
+def knightstour_backtrack(n: int, start: tuple[int, int] = (0, 0)) -> list[tuple[int, int]] | None:
     if n <= 0 or not in_bounds(start[0], start[1], n):
         return None
 
@@ -45,5 +45,5 @@ def knights_tour(n: int, start: tuple[int, int] = (0, 0)) -> list[tuple[int, int
     return search(start)
 
 
-def backtracking(n : int) -> list[tuple[int, int]] | None:
-    return knights_tour(n, start=(0, 0))
+def backtracking_algorithm(n : int) -> list[tuple[int, int]] | None:
+    return knightstour_backtrack(n, start=(0, 0))
