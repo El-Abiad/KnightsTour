@@ -2,6 +2,20 @@ from algorithms.imports import KNIGHT_MOVES
 from algorithms.imports import in_bounds, get_valid_neighbors
 
 
+def order_children(
+    children: list[tuple[int, int]],
+    visited: set[tuple[int, int]],
+    n: int ) -> list[tuple[int, int]]:
+    # Fewer onward moves = higher priority (better for large n)
+    scored = []
+    for child in children:
+        next_visited = visited | {child}
+        onward_count = len(get_valid_neighbors(child, next_visited, n))
+        scored.append((onward_count, child))
+    scored.sort(key=lambda item: item[0])
+    return [child for _, child in scored]
+
+
 def knights_tour(n: int, start: tuple[int, int] = (0, 0)) -> list[tuple[int, int]] | None:
     if n <= 0 or not in_bounds(start[0], start[1], n):
         return None
@@ -30,3 +44,7 @@ def knights_tour(n: int, start: tuple[int, int] = (0, 0)) -> list[tuple[int, int
         return None
 
     return search(start)
+
+
+def backtracking(n : int) -> list[tuple[int, int]] | None:
+    return knights_tour(n, start=(0, 0))
